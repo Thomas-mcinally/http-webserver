@@ -3,9 +3,11 @@
 
 int main(){
 	int timer = 0;
+	HttpWebserver webserver = HttpWebserver();
 	while (timer < 5){
-		HttpWebserver webserver = HttpWebserver();
-		webserver.print_greeting();
+		webserver.printGreeting();
 		timer++;
-	}	
+	}
+
+	return 0;
 }

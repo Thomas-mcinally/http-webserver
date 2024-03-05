@@ -3,9 +3,16 @@
 
 class HttpWebserver
 {
+	// want a private attribute: int input_socket_fd
 	public:
-		HttpWebserver(){}; // constructor
-		void print_greeting();
+		HttpWebserver(); // constructor
+		~HttpWebserver(); // destructor
+		void printGreeting();
+		int startServer();
+		int stopServer();
+	private:
+		int input_socket_fd;
+
 };
 
 #endif

@@ -20,4 +20,4 @@
 
 ## Scripts
 Compile
-- `gcc main.cpp http_webserver.cpp -I ./`
+- `g++ main.cpp http_webserver.cpp -I ./`
