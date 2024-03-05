@@ -1,7 +1,7 @@
 # webserver
 ## High level design
 - The HTTP webserver will be a constantly running C++ program which does the following
-- Uses kernel to set up a socket, which is basically a queue of incoming network connections
+- Uses kernel to set up a socket that acts as a queue for incoming network connections
   - Kernel listens to incoming network connections and places them on the queue (unless it is full)
 - Processes network calls from the queue synchronously, one at a time
 - Reads the HTTP message sent by the client and responds with a HTTP response unrelated to the input message
