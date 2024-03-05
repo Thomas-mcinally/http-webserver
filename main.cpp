@@ -1,9 +1,11 @@
 #include <stdio.h>
+#include "http_webserver.h"
 
 int main(){
 	int timer = 0;
 	while (timer < 5){
-		printf("hello world!\n");
+		HttpWebserver webserver = HttpWebserver();
+		webserver.print_greeting();
 		timer++;
 	}	
 }
