@@ -4,16 +4,10 @@
 #include <unistd.h>
 
 
-void HttpWebserver::printGreeting()
-{
-	printf("hello!\n");
-}
-
 int HttpWebserver::startServer()
 {
 	{
 		printf("Server started!\n");
-		// assign value to private attribute input_socket_fd
 		this->input_socket_fd = socket(AF_INET, SOCK_STREAM, 0);
         if (this->input_socket_fd == -1)
         {
@@ -40,3 +34,5 @@ HttpWebserver::~HttpWebserver()
 {
 	this->stopServer();
 }
+
+// next: bind the socket to an ip-address & port, and start listening

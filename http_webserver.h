@@ -7,11 +7,11 @@ class HttpWebserver
 	public:
 		HttpWebserver(); // constructor
 		~HttpWebserver(); // destructor
-		void printGreeting();
-		int startServer();
-		int stopServer();
+
 	private:
 		int input_socket_fd;
+		int startServer();
+		int stopServer();
 
 };
 
