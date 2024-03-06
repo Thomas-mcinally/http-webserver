@@ -13,6 +13,7 @@ class HttpWebserver
 		int port;
 		std::string ip_address;
 		int input_socket_fd;
+		int cur_conn_socket_fd;
 		int startServer();
 		int stopServer();
 
