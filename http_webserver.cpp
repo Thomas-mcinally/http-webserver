@@ -24,7 +24,11 @@ int HttpWebserver::startServer()
 				.s_addr = inet_addr(this->ip_address.c_str())
 			}
 		};
-		bind(this->input_socket_fd, (sockaddr *)&input_socket_address, sizeof(input_socket_address));
+		if (bind(this->input_socket_fd, (sockaddr *)&input_socket_address, sizeof(input_socket_address)) == -1)
+		{
+			// bind failed
+			return 1;
+		}
 
 		return 0;
     }
