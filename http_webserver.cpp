@@ -5,6 +5,18 @@
 #include <unistd.h>
 #include <string>
 
+int HttpWebserver::startListen()
+{
+	// max 5 connections in queue
+	if (listen(this->input_socket_fd, 5) == -1)
+	{
+		// listen failed
+		return 1;
+	}
+
+	printf("Server listening on %s:%d\n", this->ip_address.c_str(), this->port);
+	return 0;
+}
 
 int HttpWebserver::startServer()
 {

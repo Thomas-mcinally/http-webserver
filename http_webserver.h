@@ -7,6 +7,7 @@ class HttpWebserver
 	public:
 		HttpWebserver(std::string ip_address, int port); // constructor
 		~HttpWebserver(); // destructor
+		int startListen();
 
 	private:
 		int port;
