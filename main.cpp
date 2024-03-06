@@ -2,8 +2,7 @@
 #include "http_webserver.h"
 
 int main(){
-	int timer = 0;
-	HttpWebserver webserver = HttpWebserver();
+	HttpWebserver webserver = HttpWebserver("0.0.0.0", 80);
 
 	return 0;
 }

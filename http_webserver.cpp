@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include "http_webserver.h"
 #include <sys/socket.h>
+#include <arpa/inet.h>
 #include <unistd.h>
+#include <string>
 
 
 int HttpWebserver::startServer()
@@ -14,6 +16,16 @@ int HttpWebserver::startServer()
 			// socket creation failed
             return 1;
         }
+
+		sockaddr_in input_socket_address = {
+			.sin_family = AF_INET,
+			.sin_port = htons(this->port),
+			.sin_addr = {
+				.s_addr = inet_addr(this->ip_address.c_str())
+			}
+		};
+		bind(this->input_socket_fd, (sockaddr *)&input_socket_address, sizeof(input_socket_address));
+
 		return 0;
     }
     
@@ -26,13 +38,13 @@ int HttpWebserver::stopServer()
 	return 0;
 }
 
-HttpWebserver::HttpWebserver()
+HttpWebserver::HttpWebserver(std::string ip_address, int port)
 {
 	this->startServer();
+	this->ip_address = ip_address;
+	this->port = port;
 }
 HttpWebserver::~HttpWebserver()
 {
 	this->stopServer();
 }
-
-// next: bind the socket to an ip-address & port, and start listening
