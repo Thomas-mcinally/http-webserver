@@ -13,11 +13,6 @@
 - Solution should have a DockerFile that enables project to be run easily, with Docker as the only prerequisite
   - My webserver will have minimal security considerations, so running it inside Docker is probably safer anyways
 
-
-## Inspiration
-- https://github.com/OsasAzamegbe/http-server
-- https://osasazamegbe.medium.com/showing-building-an-http-server-from-scratch-in-c-2da7c0db6cb7
-
 ## Scripts
 Compile and run (using Cmake)
 - `make && ./http_webserver`
