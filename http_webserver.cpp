@@ -13,7 +13,7 @@ int HttpWebserver::startListen()
 	// max 5 connections in queue
 	if (listen(this->input_socket_fd, 5) == -1)
 	{
-		// listen failed
+		perror("listen failed");
 		return 1;
 	}
 
@@ -34,12 +34,18 @@ int HttpWebserver::startListen()
 		printf("Waiting for connection...\n");
 
 		this->cur_conn_socket_fd = accept(this->input_socket_fd, (sockaddr *)&input_socket_address, (socklen_t *)&address_len);
+		if (this->cur_conn_socket_fd == -1)
+		{
+			perror("accept failed");
+			return 1;
+		}
 
+		printf("Accepted request!\n");
 		char tcp_buffer[TCP_BUFFER_SIZE] = {0};
 		bytesReceived = read(this->cur_conn_socket_fd, tcp_buffer, TCP_BUFFER_SIZE);
 		if (bytesReceived == -1)
 		{
-			// read failed
+			perror("read failed");
 			return 1;
 		}
 
@@ -55,7 +61,7 @@ int HttpWebserver::startListen()
 		bytesSent = write(this->cur_conn_socket_fd, response.c_str(), response.size());
 		if (bytesSent == -1)
 		{
-			// write failed
+			perror("write failed");
 			return 1;
 		}
 		printf("Sent message to client\n");
@@ -68,11 +74,10 @@ int HttpWebserver::startListen()
 int HttpWebserver::startServer()
 {
 	{
-		printf("Server started!\n");
 		this->input_socket_fd = socket(AF_INET, SOCK_STREAM, 0);
         if (this->input_socket_fd == -1)
         {
-			// socket creation failed
+			perror("socket creation failed");
             return 1;
         }
 
@@ -85,7 +90,7 @@ int HttpWebserver::startServer()
 		};
 		if (bind(this->input_socket_fd, (sockaddr *)&input_socket_address, sizeof(input_socket_address)) == -1)
 		{
-			// bind failed
+			perror("bind failed");
 			return 1;
 		}
 
