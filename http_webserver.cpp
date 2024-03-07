@@ -55,7 +55,7 @@ int HttpWebserver::startListen()
 		}
 
 
-		std::string responseBody = "Hello from Server!\n";
+		std::string responseBody = "Server received your message\n";
         std::ostringstream ss;
         ss << "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: " << responseBody.size() << "\n\n"
            << responseBody;
