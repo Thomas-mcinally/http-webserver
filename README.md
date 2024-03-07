@@ -1,4 +1,4 @@
-# webserver
+# HTTP-webserver
 - Totally unsafe and shouldn't be used for anything important
 - This is a toy project i made to get a better understanding of the internals of a webserver such as [NGINX](https://nginx.org/en/) and [ASGI](https://asgi.readthedocs.io/en/latest/introduction.html) (used with [Uvicorn](https://www.uvicorn.org/))
 
