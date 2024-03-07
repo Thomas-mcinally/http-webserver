@@ -1,4 +1,6 @@
 # webserver
+- Totally unsafe and shouldn't be used for anything important
+
 ## High level design
 - The HTTP webserver will be a constantly running C++ program which does the following
 - Uses kernel to set up a socket that acts as a queue for incoming network connections
