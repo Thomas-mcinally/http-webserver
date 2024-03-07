@@ -1,5 +1,6 @@
 # webserver
 - Totally unsafe and shouldn't be used for anything important
+- This is a toy project i made to get a better understanding of the internals of a webserver such as [NGINX](https://nginx.org/en/) and [ASGI](https://asgi.readthedocs.io/en/latest/introduction.html) (used with Uvicorn)
 
 ## High level design
 - The HTTP webserver will be a constantly running C++ program which does the following
