@@ -5,6 +5,13 @@
 #include <unistd.h>
 #include <string>
 #include <sstream>
+#include <iostream>
+
+#ifdef DEBUG
+#define DEBUG_LOG(x) std::cout << x << std::endl;
+#else
+#define DEBUG_LOG(x) 
+#endif
 
 #define TCP_BUFFER_SIZE 10000
 
@@ -31,7 +38,7 @@ int HttpWebserver::startListen()
 	int bytesReceived;
 	while (true)
 	{
-		// printf("Waiting for connection...\n"); // debug log
+		DEBUG_LOG("Waiting for connection...")
 
 		this->cur_conn_socket_fd = accept(this->input_socket_fd, (sockaddr *)&input_socket_address, (socklen_t *)&address_len);
 		if (this->cur_conn_socket_fd == -1)
@@ -40,7 +47,7 @@ int HttpWebserver::startListen()
 			return 1;
 		}
 
-		// printf("Accepted request!\n"); // debug log
+		DEBUG_LOG("Accepted request!\n");
 		char tcp_buffer[TCP_BUFFER_SIZE] = {0};
 		bytesReceived = read(this->cur_conn_socket_fd, tcp_buffer, TCP_BUFFER_SIZE);
 		if (bytesReceived == -1)
@@ -68,7 +75,7 @@ int HttpWebserver::startListen()
 			perror("write failed");
 			return 1;
 		}
-		// printf("Sent message to client\n"); // debug log
+		DEBUG_LOG("Sent message to client\n"); // debug log
 		close(this->cur_conn_socket_fd);
 	}
 

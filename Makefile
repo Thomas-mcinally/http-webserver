@@ -1,9 +1,13 @@
 CXX=g++
+CXXFLAGS=-I ./
 
-all: http_webserver
+all: debug release
 
-http_webserver: main.cpp http_webserver.cpp
-	$(CXX) -I ./ -o http_webserver main.cpp http_webserver.cpp
+debug:
+	$(CXX) $(CXXFLAGS) -DDEBUG -o http_webserver_debug main.cpp http_webserver.cpp
+
+release:
+	$(CXX) $(CXXFLAGS) -o http_webserver main.cpp http_webserver.cpp
 
 clean:
-	rm -f http_webserver
+	rm -f http_webserver http_webserver_debug
