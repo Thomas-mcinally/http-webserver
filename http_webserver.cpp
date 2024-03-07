@@ -55,10 +55,10 @@ int HttpWebserver::startListen()
 		}
 
 
-		std::string htmlFile = "<!DOCTYPE html><html lang=\"en\"><body><h1> HOME </h1><p> Hello from server! </p></body></html>";
+		std::string responseBody = "Hello from Server!\n";
         std::ostringstream ss;
-        ss << "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: " << htmlFile.size() << "\n\n"
-           << htmlFile;
+        ss << "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: " << responseBody.size() << "\n\n"
+           << responseBody;
 		std::string response = ss.str();
 
 		int bytesSent;
