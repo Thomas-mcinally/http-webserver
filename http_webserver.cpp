@@ -31,7 +31,7 @@ int HttpWebserver::startListen()
 	int bytesReceived;
 	while (true)
 	{
-		printf("Waiting for connection...\n");
+		// printf("Waiting for connection...\n"); // debug log
 
 		this->cur_conn_socket_fd = accept(this->input_socket_fd, (sockaddr *)&input_socket_address, (socklen_t *)&address_len);
 		if (this->cur_conn_socket_fd == -1)
@@ -40,7 +40,7 @@ int HttpWebserver::startListen()
 			return 1;
 		}
 
-		printf("Accepted request!\n");
+		// printf("Accepted request!\n"); // debug log
 		char tcp_buffer[TCP_BUFFER_SIZE] = {0};
 		bytesReceived = read(this->cur_conn_socket_fd, tcp_buffer, TCP_BUFFER_SIZE);
 		if (bytesReceived == -1)
@@ -48,8 +48,12 @@ int HttpWebserver::startListen()
 			perror("read failed");
 			return 1;
 		}
+		char* body = strstr(tcp_buffer, "\r\n\r\n");
+		if (body != NULL) {
+			body += 4;  // Skip past the "\r\n\r\n"
+			printf("->Client: %s\n", body);
+		}
 
-		printf("Received message from client: %s\n", tcp_buffer);
 
 		std::string htmlFile = "<!DOCTYPE html><html lang=\"en\"><body><h1> HOME </h1><p> Hello from server! </p></body></html>";
         std::ostringstream ss;
@@ -64,7 +68,7 @@ int HttpWebserver::startListen()
 			perror("write failed");
 			return 1;
 		}
-		printf("Sent message to client\n");
+		// printf("Sent message to client\n"); // debug log
 		close(this->cur_conn_socket_fd);
 	}
 
@@ -93,7 +97,6 @@ int HttpWebserver::startServer()
 			perror("bind failed");
 			return 1;
 		}
-
 		return 0;
     }
     
