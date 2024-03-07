@@ -11,10 +11,8 @@
 
 ## Acceptance criteria
 - When running the server, someone (e.g. my girlfriend) should be able to send me messages from their terminal (using CURL). They should receive a response saying the message was received
-- Solution should have some basic tests - first time writing tests in C++
+- Solution should have some basic automated tests
 - Solution should have a MakeFile that enables project to be compiled and run locally
-- Solution should have a DockerFile that enables project to be run easily, with Docker as the only prerequisite
-  - My webserver will have minimal security considerations, so running it inside Docker is probably safer anyways
 
 ## Scripts
 Compile and run (using Cmake)
