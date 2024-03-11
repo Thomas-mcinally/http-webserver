@@ -15,5 +15,5 @@
 - Solution should have a MakeFile that enables project to be compiled and run locally
 
 ## Scripts
-Compile and run (using Cmake)
+Compile and run (using Make)
 - `make && ./http_webserver`
