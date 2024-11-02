@@ -7,7 +7,7 @@
 - Uses kernel to set up a socket that acts as a queue for incoming network connections
   - Kernel listens to incoming network connections and places them on the queue (unless it is full)
 - Processes network calls from the queue synchronously, one at a time
-- Reads the HTTP message sent by the client ans sends a response acknowledging that the message was received
+- Reads the HTTP message sent by the client and sends a response acknowledging that the message was received
 
 ## Acceptance criteria
 - When running the server, someone (e.g. my girlfriend) should be able to send me messages from their terminal (using CURL). They should receive a response saying the message was received
